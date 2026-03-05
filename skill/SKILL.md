@@ -30,7 +30,7 @@ python3 skill/dashboard_manager.py list
 Create a new tile instance from a template.
 
 ```bash
-python3 skill/dashboard_manager.py add --template comfyui --id comfyui-lab --name "ComfyUI Lab" --set host=192.168.1.20 --set port=8188
+python3 skill/dashboard_manager.py add --template comfyui --id comfyui-lab --name "ComfyUI Lab" --set host=10.0.0.100 --set port=8188
 ```
 
 ### `remove`

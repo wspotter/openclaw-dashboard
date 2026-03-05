@@ -22,7 +22,7 @@ This is a standalone modular dashboard for OpenClaw integrations. It uses a **te
 You have a direct line to the senior engineer (Bob / Antigravity) via email. Use it when you're stuck or facing a real design decision.
 
 **To ask a question:**
-1. Use the `gmail-pro` skill or `sendmail` to email **`bob@theprintery.biz`**
+1. Use the `gmail-pro` skill or `sendmail` to email **`admin@example.com`**
 2. Subject line MUST start with `[WORKER QUESTION]`
 3. In the body, include:
    - What you're trying to do

@@ -1,7 +1,7 @@
 # DEV_REPORT.md
 
 ## Project
-OpenClaw Dashboard (`/home/stacy/openclaw-dashboard`)
+OpenClaw Dashboard (`<path_to_repo>`)
 
 ## Date
 2026-03-05

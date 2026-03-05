@@ -20,7 +20,7 @@
     "host": {
       "type": "string",
       "required": false,
-      "default": "192.168.1.133"
+      "default": "mail.example.com"
     },
     "port": {
       "type": "number",

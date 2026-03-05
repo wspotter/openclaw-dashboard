@@ -1,133 +1,119 @@
-# OpenClaw Dashboard
+<div align="center">
+  <h1>🦁 OpenClaw Dashboard</h1>
+  <p><strong>A beautifully modular, adaptive command center for your OpenClaw ecosystem.</strong></p>
+  
+  [![CI](https://github.com/wspotter/openclaw-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/wspotter/openclaw-dashboard/actions/workflows/ci.yml)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+  [![Node >=20](https://img.shields.io/badge/node-%3E%3D20-339933.svg)](https://nodejs.org/)
 
-Runtime-template integration dashboard for OpenClaw environments.
+  ![OpenClaw Dashboard Preview](./public/dashboard.png)
+</div>
 
-[![CI](https://github.com/wspotter/openclaw-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/wspotter/openclaw-dashboard/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Node >=20](https://img.shields.io/badge/node-%3E%3D20-339933.svg)](https://nodejs.org/)
+---
 
-## What It Does
+## ✨ Overview
 
-- Renders integration tiles from runtime JSON templates (`templates/*.template.json`)
-- Adapts layout density automatically as tile count grows
-- Polls health and metrics with hard 5-second request timeouts
-- Supports tile actions and detail panels for compact mode
-- Lets OpenClaw manage tiles via CLI skill wrappers
+Welcome to the **OpenClaw Dashboard**! This isn't just another static status page. It is a fully scalable, exceptionally designed integration hub built to give you a god's-eye view of your entire OpenClaw AI environment. 
 
-## Adaptive Layout Model
+Whether you're running 3 services or 30, the OpenClaw Dashboard gracefully adapts to your workflow, transforming raw metrics into an intuitive, visually stunning experience utilizing modern glassmorphism and deep dark-mode aesthetics.
 
-- `1-4` tiles: large cards
-- `5-9` tiles: medium cards
-- `10-20` tiles: compact cards + detail panel
-- `20+` tiles: category-grouped view (collapsed by default)
+## 🚀 Why You'll Love It
 
-## Architecture
+- **Dynamic Density Scaling**: The interface elegantly transitions from rich, expansive feature cards to a sleek, compact list as you add more integrations, without ever feeling cluttered.
+- **Lightning Fast & Frictionless**: Built on pure Vanilla JavaScript and CSS via Vite. No heavy frameworks. No bloated dependencies. Just raw, uncompromising performance.
+- **Zero-Touch Integration Engine**: Adding a new service is a breeze. Simply drop a JSON template into the `templates/` directory, and the dashboard seamlessly auto-discovers and integrates it—no frontend code changes required.
+- **Built for Security**: Designed with an offline-first, LAN-native architecture ensuring your operational data stays strictly on your network.
+
+---
+
+## 🏗 System Architecture
+
+The dashboard acts as the visual frontend to your backend integrations, powered by an intelligent runtime layout engine.
 
 ```mermaid
 flowchart TD
-  A[dashboard.config.json] --> B[Template Engine]
-  C[templates/*.template.json] --> B
+  A[Config] --> B[Template Engine]
+  C[Templates] --> B
   B --> D[Tile Models]
-  D --> E[Tile Manager]
-  E --> F[Health Checker]
-  E --> G[Layout Engine]
-  G --> H[Large / Medium / Compact / Grouped UI]
+  D --> E[Tile Lifecycle Manager]
+  E --> F[Health & Analytics]
+  E --> G[Adaptive Layout Engine]
+  G --> H[Beautiful UI Render]
   F --> H
-  I[skill/dashboard_manager.py] --> A
 ```
 
-## Quick Start
+---
+
+## ⚡ Getting Started
+
+### 1. Installation
+Clone the repository and install the lightning-fast dependencies.
 
 ```bash
 git clone https://github.com/wspotter/openclaw-dashboard.git
 cd openclaw-dashboard
 npm install
+```
+
+### 2. Boot Up (Development)
+Launch the development server and experience it live.
+
+```bash
 npm run dev
 ```
+Navigate to `http://localhost:5173`. Prepare to be amazed.
 
-Dashboard URL: `http://localhost:5173`
-
-Build check:
-
-```bash
-npm run check
-```
-
-## OpenClaw Integration (Recommended)
-
-Install the skill link so OpenClaw can operate the dashboard directly:
+### 3. Production Build
+Ready for the big leagues? Compile an ultra-optimized static bundle.
 
 ```bash
-npm run install:openclaw-skill
+npm run build
+npm run preview
 ```
 
-This links:
+---
 
-`~/.openclaw/skills/openclaw-dashboard -> <repo>/skill`
+## 🧩 The Template Ecosystem
 
-After install, OpenClaw can use:
+The real magic happens in the `templates/` directory. By dropping a perfectly crafted `.template.json` file, you can instantly teach the dashboard how to monitor and interact with a completely net-new service.
+
+We've got you covered with 5 gorgeous starter templates out-of-the-box:
+- 🎨 **ComfyUI** (Creative Generation)
+- 📬 **Mailcow** (Communications)
+- 🧠 **OpenClaw Gateway** (AI Core)
+- 📦 **Delivery Hub** (Operations)
+- 🎙️ **Voice Pipeline** (STT/TTS)
+
+### Managing Integrations via CLI
+Are you feeling creative? You can use the included OpenClaw CLI skill to manage your dashboard instances dynamically:
 
 ```bash
-~/.openclaw/skills/openclaw-dashboard/dashboardctl list
-~/.openclaw/skills/openclaw-dashboard/dashboardctl templates
-~/.openclaw/skills/openclaw-dashboard/dashboardctl add --template comfyui --id comfyui-lab --name "ComfyUI Lab"
-~/.openclaw/skills/openclaw-dashboard/dashboardctl set --id comfyui-lab --set host=localhost --set port=8188
-~/.openclaw/skills/openclaw-dashboard/dashboardctl status
+# Add a custom ComfyUI node
+python3 skill/dashboard_manager.py add --template comfyui --id comfyui-lab --name "Design Lab" --set host=localhost --set port=8188
+
+# Check connection health across the board
+python3 skill/dashboard_manager.py status
 ```
 
-Start dashboard through skill wrapper:
+---
 
-```bash
-~/.openclaw/skills/openclaw-dashboard/dashboardapp
-```
+## 🔒 Security First
 
-Run diagnostics:
+We take your digital ecosystem seriously:
+- **No Secrets in Plaintext**: Never encode API tokens directly in the config. 
+- **Environment Gating**: Limit outbound proxying via the `OPENCLAW_PROXY_ALLOWLIST` in your `.env` file.
+- **LAN-Native**: By default, the architecture relies on edge infrastructure and mocks to ensure robust offline functionality.
 
-```bash
-~/.openclaw/skills/openclaw-dashboard/dashboarddoctor
-```
+---
 
-Full guide: [`OPENCLAW_INTEGRATION.md`](OPENCLAW_INTEGRATION.md)
+## 🤝 Join the Pride
 
-## Template Workflow
-
-1. Add or scaffold a template in `templates/`
-2. Add an instance in `config/dashboard.config.json` (or use `dashboardctl add`)
-3. Use `dashboardctl refresh --sync-missing` if needed
-4. Click dashboard `Refresh` or wait for auto-reload polling
-
-## Configuration
-
-Copy `.env.example` if you need custom proxy host allowlist:
-
-```bash
-cp .env.example .env
-```
-
-`OPENCLAW_PROXY_ALLOWLIST` controls allowed hosts for `/api/proxy`.
-Default: `localhost,127.0.0.1,::1`
-
-## Repository Layout
-
-- `src/core/` runtime orchestration
-- `src/components/` tile/panel renderers
-- `src/utils/` fetch timeout + jq-lite helpers
-- `src/styles/` design and layout CSS
-- `templates/` runtime template definitions
-- `config/` tile instance config
-- `skill/` OpenClaw skill wrappers and manager CLI
-- `scripts/` install helpers
-
-## Security Notes
-
-- Do not commit credentials into template/config JSON files.
-- Restrict proxy targets using `OPENCLAW_PROXY_ALLOWLIST`.
-- Use an authenticated reverse proxy for internet-facing deployments.
-
-## Contributing
-
-See [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`SECURITY.md`](SECURITY.md).
+We welcome developers, designers, and tinkerers to help elevate OpenClaw. Check out our `CONTRIBUTING.md` and `SECURITY.md` to get started. Don't forget to run `npm run check` before submitting a Pull Request!
 
 ## License
 
-MIT. See [`LICENSE`](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
+
+<div align="center">
+  <p>Built with ❤️ by the open-source community.</p>
+</div>

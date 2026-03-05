@@ -193,6 +193,12 @@ function dashboardApiPlugin() {
               return;
             }
 
+            const allowedHosts = process.env.ALLOWED_API_HOSTS ? process.env.ALLOWED_API_HOSTS.split(',') : [];
+            if (allowedHosts.length > 0 && !allowedHosts.includes(parsedTarget.hostname)) {
+              asJson(res, 403, { error: 'Target host is not in allowed hosts list.' });
+              return;
+            }
+
             const controller = new AbortController();
             const timer = setTimeout(() => controller.abort(), 5000);
             const method = req.method ?? 'GET';

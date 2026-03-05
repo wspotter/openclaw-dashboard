@@ -1,0 +1,205 @@
+.tile {
+  --tile-accent: var(--category-default);
+
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 0.85rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--surface-border);
+  border-left: 3px solid var(--tile-accent);
+  background: linear-gradient(150deg, rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.5));
+  backdrop-filter: blur(18px);
+  padding: 0.9rem;
+  box-shadow: var(--shadow-glow);
+  min-height: 160px;
+  transition: transform 160ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.tile:hover,
+.tile:focus-visible {
+  transform: translateY(-2px);
+}
+
+.tile[data-category='creative'] {
+  --tile-accent: var(--category-creative);
+}
+
+.tile[data-category='comms'] {
+  --tile-accent: var(--category-comms);
+}
+
+.tile[data-category='ops'] {
+  --tile-accent: var(--category-ops);
+}
+
+.tile[data-category='core'] {
+  --tile-accent: var(--category-core);
+}
+
+.tile[data-category='voice'] {
+  --tile-accent: var(--category-voice);
+}
+
+.tile-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.tile-heading {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.tile-icon {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.tile-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 620;
+}
+
+.tile-meta {
+  margin: 0.1rem 0 0;
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  text-transform: capitalize;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.22rem 0.55rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: 1px solid transparent;
+}
+
+.status-online {
+  border-color: rgba(52, 211, 153, 0.45);
+  box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.25), 0 0 20px rgba(52, 211, 153, 0.18);
+}
+
+.status-online .status-badge {
+  color: var(--status-online);
+  border-color: rgba(52, 211, 153, 0.45);
+}
+
+.status-offline {
+  border-color: rgba(248, 113, 113, 0.45);
+  animation: offline-pulse 2s ease-in-out infinite;
+}
+
+.status-offline .status-badge {
+  color: var(--status-offline);
+  border-color: rgba(248, 113, 113, 0.45);
+}
+
+.status-warning .status-badge {
+  color: var(--status-warning);
+  border-color: rgba(251, 191, 36, 0.45);
+}
+
+.status-unknown .status-badge {
+  color: var(--status-unknown);
+  border-color: rgba(167, 139, 250, 0.45);
+}
+
+@keyframes offline-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.12), 0 0 14px rgba(248, 113, 113, 0.15);
+  }
+
+  50% {
+    box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.3), 0 0 22px rgba(248, 113, 113, 0.26);
+  }
+}
+
+.tile-body {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.metrics-grid {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.metrics-grid-large {
+  grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+}
+
+.metric-card {
+  border-radius: var(--radius-sm);
+  padding: 0.48rem 0.56rem;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(15, 23, 42, 0.42);
+}
+
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+  border-bottom: 1px dashed rgba(148, 163, 184, 0.26);
+  padding-bottom: 0.35rem;
+}
+
+.metric-label {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.77rem;
+}
+
+.metric-value {
+  margin: 0.12rem 0 0;
+  font-size: 1rem;
+  font-weight: 610;
+}
+
+.compact-metric {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.sparkline {
+  width: 100%;
+  height: 28px;
+  color: var(--tile-accent);
+  opacity: 0.92;
+}
+
+.tile-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+.tile-actions {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.tile-action {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.55);
+  color: var(--text-primary);
+  font-size: 0.72rem;
+  padding: 0.24rem 0.56rem;
+  cursor: pointer;
+}
+
+.tile-action:hover {
+  border-color: rgba(96, 165, 250, 0.6);
+}

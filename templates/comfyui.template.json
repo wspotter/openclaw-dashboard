@@ -1,0 +1,82 @@
+{
+  "template_id": "comfyui",
+  "template_version": "1.0",
+  "display_name": "ComfyUI Image Generator",
+  "description": "Monitor queue health and trigger quick generations.",
+  "category": "creative",
+  "icon": "🎨",
+  "refresh_interval_seconds": 20,
+  "config_schema": {
+    "base_url": {
+      "type": "string",
+      "required": false,
+      "default": "/api/mock/comfyui"
+    },
+    "protocol": {
+      "type": "string",
+      "required": false,
+      "default": "http"
+    },
+    "host": {
+      "type": "string",
+      "required": false,
+      "default": "localhost"
+    },
+    "port": {
+      "type": "number",
+      "required": false,
+      "default": 8188
+    }
+  },
+  "health_check": {
+    "method": "GET",
+    "path": "/system_stats",
+    "expect_status": 200
+  },
+  "metrics": [
+    {
+      "id": "queue_pending",
+      "label": "Queue",
+      "source": {
+        "method": "GET",
+        "path": "/queue",
+        "jq": ".queue_pending | length"
+      },
+      "type": "number"
+    },
+    {
+      "id": "jobs_running",
+      "label": "Running",
+      "source": {
+        "method": "GET",
+        "path": "/queue",
+        "jq": ".queue_running | length"
+      },
+      "type": "number"
+    },
+    {
+      "id": "gpu_busy",
+      "label": "GPU Busy",
+      "source": {
+        "method": "GET",
+        "path": "/system_stats",
+        "jq": ".gpu_busy | to_string"
+      },
+      "type": "string"
+    }
+  ],
+  "actions": [
+    {
+      "id": "quick_generate",
+      "label": "Quick Generate",
+      "type": "prompt_input",
+      "command": "python3 $OPENCLAW_HOME/skills/openclaw-comfyui/comfy_client.py sale_banner \"{input}\""
+    },
+    {
+      "id": "open_ui",
+      "label": "Open ComfyUI",
+      "type": "link",
+      "url": "{config.protocol}://{config.host}:{config.port}"
+    }
+  ]
+}

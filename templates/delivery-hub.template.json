@@ -1,0 +1,76 @@
+{
+  "template_id": "delivery-hub",
+  "template_version": "1.0",
+  "display_name": "Delivery Hub",
+  "description": "Daily package throughput and revenue pacing.",
+  "category": "ops",
+  "icon": "📦",
+  "refresh_interval_seconds": 30,
+  "config_schema": {
+    "base_url": {
+      "type": "string",
+      "required": false,
+      "default": "/api/mock/delivery-hub"
+    },
+    "protocol": {
+      "type": "string",
+      "required": false,
+      "default": "http"
+    },
+    "host": {
+      "type": "string",
+      "required": false,
+      "default": "localhost"
+    },
+    "port": {
+      "type": "number",
+      "required": false,
+      "default": 8772
+    }
+  },
+  "health_check": {
+    "method": "GET",
+    "path": "/health",
+    "expect_status": 200
+  },
+  "metrics": [
+    {
+      "id": "packages_today",
+      "label": "Packages Today",
+      "source": {
+        "method": "GET",
+        "path": "/today",
+        "jq": ".packages_today"
+      },
+      "type": "number"
+    },
+    {
+      "id": "revenue_today",
+      "label": "Revenue",
+      "source": {
+        "method": "GET",
+        "path": "/today",
+        "jq": ".revenue_today"
+      },
+      "type": "number"
+    },
+    {
+      "id": "top_driver",
+      "label": "Top Driver",
+      "source": {
+        "method": "GET",
+        "path": "/today",
+        "jq": ".top_driver"
+      },
+      "type": "string"
+    }
+  ],
+  "actions": [
+    {
+      "id": "send_summary",
+      "label": "Send Driver Summary",
+      "type": "button",
+      "command": "openclaw skill run printery-deliveries notify_drivers"
+    }
+  ]
+}

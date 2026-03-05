@@ -1,0 +1,82 @@
+{
+  "template_id": "openclaw",
+  "template_version": "1.0",
+  "display_name": "OpenClaw Gateway",
+  "description": "Observe active agent sessions and routing latency.",
+  "category": "core",
+  "icon": "🤖",
+  "refresh_interval_seconds": 15,
+  "config_schema": {
+    "base_url": {
+      "type": "string",
+      "required": false,
+      "default": "/api/mock/openclaw"
+    },
+    "protocol": {
+      "type": "string",
+      "required": false,
+      "default": "http"
+    },
+    "host": {
+      "type": "string",
+      "required": false,
+      "default": "localhost"
+    },
+    "port": {
+      "type": "number",
+      "required": false,
+      "default": 18789
+    }
+  },
+  "health_check": {
+    "method": "GET",
+    "path": "/health",
+    "expect_status": 200
+  },
+  "metrics": [
+    {
+      "id": "active_sessions",
+      "label": "Active Sessions",
+      "source": {
+        "method": "GET",
+        "path": "/sessions",
+        "jq": ".active_sessions"
+      },
+      "type": "number"
+    },
+    {
+      "id": "avg_latency",
+      "label": "Latency ms",
+      "source": {
+        "method": "GET",
+        "path": "/sessions",
+        "jq": ".avg_latency_ms"
+      },
+      "type": "number"
+    },
+    {
+      "id": "agents_online",
+      "label": "Agents",
+      "source": {
+        "method": "GET",
+        "path": "/agents",
+        "jq": ".agents | length"
+      },
+      "type": "number"
+    }
+  ],
+  "actions": [
+    {
+      "id": "open_gateway",
+      "label": "Open Gateway",
+      "type": "link",
+      "url": "{config.protocol}://{config.host}:{config.port}"
+    },
+    {
+      "id": "refresh_routes",
+      "label": "Refresh Routes",
+      "type": "button",
+      "command": "openclaw gateway reload"
+    }
+  ]
+}

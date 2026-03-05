@@ -1,0 +1,76 @@
+{
+  "template_id": "voice-pipeline",
+  "template_version": "1.0",
+  "display_name": "Voice Pipeline",
+  "description": "Wake-word listening state and command recency.",
+  "category": "voice",
+  "icon": "🎙️",
+  "refresh_interval_seconds": 10,
+  "config_schema": {
+    "base_url": {
+      "type": "string",
+      "required": false,
+      "default": "/api/mock/voice"
+    },
+    "protocol": {
+      "type": "string",
+      "required": false,
+      "default": "http"
+    },
+    "host": {
+      "type": "string",
+      "required": false,
+      "default": "localhost"
+    },
+    "port": {
+      "type": "number",
+      "required": false,
+      "default": 8766
+    }
+  },
+  "health_check": {
+    "method": "GET",
+    "path": "/health",
+    "expect_status": 200
+  },
+  "metrics": [
+    {
+      "id": "listening",
+      "label": "Listening",
+      "source": {
+        "method": "GET",
+        "path": "/status",
+        "jq": ".listening | to_string"
+      },
+      "type": "string"
+    },
+    {
+      "id": "last_command",
+      "label": "Last Command",
+      "source": {
+        "method": "GET",
+        "path": "/status",
+        "jq": ".last_command_minutes"
+      },
+      "type": "relative_time"
+    },
+    {
+      "id": "wake_word",
+      "label": "Wake Word",
+      "source": {
+        "method": "GET",
+        "path": "/status",
+        "jq": ".wake_word"
+      },
+      "type": "string"
+    }
+  ],
+  "actions": [
+    {
+      "id": "restart_voice",
+      "label": "Restart Voice",
+      "type": "button",
+      "command": "bash $OPENCLAW_HOME/skills/printery-voice/run.sh"
+    }
+  ]
+}

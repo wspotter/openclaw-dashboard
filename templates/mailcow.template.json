@@ -1,0 +1,82 @@
+{
+  "template_id": "mailcow",
+  "template_version": "1.0",
+  "display_name": "Mailcow Communications",
+  "description": "Inbox readiness and outbound queue visibility.",
+  "category": "comms",
+  "icon": "📬",
+  "refresh_interval_seconds": 25,
+  "config_schema": {
+    "base_url": {
+      "type": "string",
+      "required": false,
+      "default": "/api/mock/mailcow"
+    },
+    "protocol": {
+      "type": "string",
+      "required": false,
+      "default": "https"
+    },
+    "host": {
+      "type": "string",
+      "required": false,
+      "default": "192.168.1.133"
+    },
+    "port": {
+      "type": "number",
+      "required": false,
+      "default": 443
+    }
+  },
+  "health_check": {
+    "method": "GET",
+    "path": "/api/v1/get/status",
+    "expect_status": 200
+  },
+  "metrics": [
+    {
+      "id": "unread_count",
+      "label": "Unread",
+      "source": {
+        "method": "GET",
+        "path": "/api/v1/mailbox/stats",
+        "jq": ".unread"
+      },
+      "type": "number"
+    },
+    {
+      "id": "last_received",
+      "label": "Last Received",
+      "source": {
+        "method": "GET",
+        "path": "/api/v1/mailbox/stats",
+        "jq": ".last_received_minutes"
+      },
+      "type": "relative_time"
+    },
+    {
+      "id": "outbox_queued",
+      "label": "Outbox Queue",
+      "source": {
+        "method": "GET",
+        "path": "/api/v1/mailbox/stats",
+        "jq": ".outbox_queued"
+      },
+      "type": "number"
+    }
+  ],
+  "actions": [
+    {
+      "id": "compose",
+      "label": "Compose Email",
+      "type": "button",
+      "command": "openclaw skill run gmail-pro send --account sales"
+    },
+    {
+      "id": "open_sogo",
+      "label": "Open Webmail",
+      "type": "link",
+      "url": "{config.protocol}://{config.host}/SOGo"
+    }
+  ]
+}

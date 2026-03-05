@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "description": "Meta-schema for dashboard tile templates.",
+  "required_fields": [
+    "template_id",
+    "template_version",
+    "display_name",
+    "description",
+    "category",
+    "icon",
+    "config_schema",
+    "health_check",
+    "metrics",
+    "actions"
+  ],
+  "field_types": {
+    "template_id": "string",
+    "template_version": "string",
+    "display_name": "string",
+    "description": "string",
+    "category": "string",
+    "icon": "string",
+    "config_schema": "object",
+    "health_check": "object",
+    "metrics": "array",
+    "actions": "array"
+  }
+}

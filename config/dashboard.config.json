@@ -1,0 +1,64 @@
+{
+  "version": "1.0",
+  "metadata": {
+    "updated_at": "2026-03-05T14:45:03+00:00",
+    "description": "Active dashboard tile instances"
+  },
+  "instances": [
+    {
+      "id": "comfyui-main",
+      "template_id": "comfyui",
+      "name": "ComfyUI",
+      "config": {
+        "base_url": "/api/mock/comfyui",
+        "protocol": "http",
+        "host": "localhost",
+        "port": 8188
+      }
+    },
+    {
+      "id": "mailcow-main",
+      "template_id": "mailcow",
+      "name": "Mailcow",
+      "config": {
+        "base_url": "/api/mock/mailcow",
+        "protocol": "https",
+        "host": "192.168.1.133",
+        "port": 443
+      }
+    },
+    {
+      "id": "openclaw-gateway",
+      "template_id": "openclaw",
+      "name": "OpenClaw Gateway",
+      "config": {
+        "base_url": "/api/mock/openclaw",
+        "protocol": "http",
+        "host": "localhost",
+        "port": 18789
+      }
+    },
+    {
+      "id": "delivery-hub-main",
+      "template_id": "delivery-hub",
+      "name": "Delivery Hub",
+      "config": {
+        "base_url": "/api/mock/delivery-hub",
+        "protocol": "http",
+        "host": "localhost",
+        "port": 8772
+      }
+    },
+    {
+      "id": "voice-pipeline-main",
+      "template_id": "voice-pipeline",
+      "name": "Voice Pipeline",
+      "config": {
+        "base_url": "/api/mock/voice",
+        "protocol": "http",
+        "host": "localhost",
+        "port": 8766
+      }
+    }
+  ]
+}

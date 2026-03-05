@@ -1,0 +1,123 @@
+.panel-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.panel-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.detail-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(440px, 100vw);
+  height: 100vh;
+  background: linear-gradient(165deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.9));
+  border-left: 1px solid rgba(148, 163, 184, 0.35);
+  transform: translateX(104%);
+  transition: transform 220ms ease;
+  z-index: 30;
+  padding: 1rem;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 0.75rem;
+  overflow-y: auto;
+}
+
+.detail-panel.is-open {
+  transform: translateX(0);
+}
+
+.detail-header {
+  display: grid;
+  gap: 0.35rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.24);
+}
+
+.detail-title {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.detail-subtitle {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+}
+
+.panel-close {
+  justify-self: start;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  background: rgba(15, 23, 42, 0.55);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.detail-content {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.detail-section {
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: var(--radius-md);
+  background: rgba(15, 23, 42, 0.55);
+  padding: 0.75rem;
+}
+
+.detail-section h3 {
+  margin-top: 0;
+  margin-bottom: 0.65rem;
+  font-size: 0.95rem;
+}
+
+.detail-health {
+  margin: 0;
+}
+
+.detail-metrics {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  row-gap: 0.4rem;
+  margin: 0;
+}
+
+.detail-metrics dt {
+  color: var(--text-secondary);
+}
+
+.detail-metrics dd {
+  margin: 0;
+  font-weight: 610;
+}
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.detail-action {
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.65);
+  color: var(--text-primary);
+  padding: 0.38rem 0.75rem;
+  cursor: pointer;
+}
+
+.detail-errors {
+  margin: 0.55rem 0 0;
+  padding-left: 1.15rem;
+  color: #fca5a5;
+  font-size: 0.84rem;
+}

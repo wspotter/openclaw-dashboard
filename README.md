@@ -1,139 +1,117 @@
-# OpenClaw Dashboard
+<div align="center">
+  <h1>🦁 OpenClaw Dashboard</h1>
+  <p><strong>A beautifully modular, adaptive command center for your OpenClaw ecosystem.</strong></p>
+  
+  [![CI](https://github.com/wspotter/openclaw-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/wspotter/openclaw-dashboard/actions/workflows/ci.yml)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+  [![Node >=20](https://img.shields.io/badge/node-%3E%3D20-339933.svg)](https://nodejs.org/)
+</div>
 
-OpenClaw Dashboard is a standalone, modular integration hub for OpenClaw environments.
+---
 
-It is designed for the real scaling problem:
-- 3 integrations should feel rich and visual.
-- 20+ integrations should still feel fast and navigable.
-- New integrations should be added by templates, not code rewrites.
+## ✨ Overview
 
-## Why This Exists
+Welcome to the **OpenClaw Dashboard**! This isn't just another static status page. It is a fully scalable, exceptionally designed integration hub built to give you a god's-eye view of your entire OpenClaw AI environment. 
 
-Most dashboards degrade as integrations grow. This project keeps one UI model that adapts by density:
+Whether you're running 3 services or 30, the OpenClaw Dashboard gracefully adapts to your workflow, transforming raw metrics into an intuitive, visually stunning experience utilizing modern glassmorphism and deep dark-mode aesthetics.
 
-1. `1-4` tiles: large cards with richer context
-2. `5-9` tiles: medium cards for key metrics
-3. `10-20` tiles: compact cards + right-side detail panel
-4. `20+` tiles: category groups collapsed by default
+## 🚀 Why You'll Love It
 
-## Core Principles
+- **Dynamic Density Scaling**: The interface elegantly transitions from rich, expansive feature cards to a sleek, compact list as you add more integrations, without ever feeling cluttered.
+- **Lightning Fast & Frictionless**: Built on pure Vanilla JavaScript and CSS via Vite. No heavy frameworks. No bloated dependencies. Just raw, uncompromising performance.
+- **Zero-Touch Integration Engine**: Adding a new service is a breeze. Simply drop a JSON template into the `templates/` directory, and the dashboard seamlessly auto-discovers and integrates it—no frontend code changes required.
+- **Built for Security**: Designed with an offline-first, LAN-native architecture ensuring your operational data stays strictly on your network.
 
-- Vanilla stack: Vite + vanilla JS + vanilla CSS
-- Runtime templates: `templates/*.template.json` are loaded live
-- 5s network budget: all fetches are timeout bounded
-- LAN-first operation: no CDN dependency
-- Operator-friendly control: CLI management for tile instances
+---
 
-## OpenClaw Style Architecture
+## 🏗 System Architecture
+
+The dashboard acts as the visual frontend to your backend integrations, powered by an intelligent runtime layout engine.
 
 ```mermaid
 flowchart TD
-  A[dashboard.config.json] --> B[Template Engine]
-  C[templates/*.template.json] --> B
+  A[Config] --> B[Template Engine]
+  C[Templates] --> B
   B --> D[Tile Models]
-  D --> E[Tile Manager]
-  E --> F[Health Checker]
-  E --> G[Layout Engine]
-  G --> H[Large / Medium / Compact / Grouped UI]
+  D --> E[Tile Lifecycle Manager]
+  E --> F[Health & Analytics]
+  E --> G[Adaptive Layout Engine]
+  G --> H[Beautiful UI Render]
   F --> H
-  I[skill/dashboard_manager.py] --> A
 ```
 
-## Quick Start
+---
+
+## ⚡ Getting Started
+
+### 1. Installation
+Clone the repository and install the lightning-fast dependencies.
 
 ```bash
+git clone https://github.com/wspotter/openclaw-dashboard.git
+cd openclaw-dashboard
 npm install
-npm run dev
 ```
 
-App URL: `http://localhost:5173`
+### 2. Boot Up (Development)
+Launch the development server and experience it live.
 
-Production build:
+```bash
+npm run dev
+```
+Navigate to `http://localhost:5173`. Prepare to be amazed.
+
+### 3. Production Build
+Ready for the big leagues? Compile an ultra-optimized static bundle.
 
 ```bash
 npm run build
 npm run preview
 ```
 
-## Runtime API Endpoints
+---
 
-Served by Vite middleware at dev time:
+## 🧩 The Template Ecosystem
 
-- `GET /api/templates`
-- `GET /api/templates/_schema.json`
-- `GET /api/templates/<file>`
-- `GET /api/config/dashboard.config.json`
-- `GET /api/proxy?target=<encoded-url>` for cross-origin integration checks
+The real magic happens in the `templates/` directory. By dropping a perfectly crafted `.template.json` file, you can instantly teach the dashboard how to monitor and interact with a completely net-new service.
 
-## Template Workflow
+We've got you covered with 5 gorgeous starter templates out-of-the-box:
+- 🎨 **ComfyUI** (Creative Generation)
+- 📬 **Mailcow** (Communications)
+- 🧠 **OpenClaw Gateway** (AI Core)
+- 📦 **Delivery Hub** (Operations)
+- 🎙️ **Voice Pipeline** (STT/TTS)
 
-1. Drop a `*.template.json` into `templates/`
-2. Wait for auto-discovery polling (15s) or click `Refresh`
-3. Tile appears automatically with template defaults
-4. Optionally persist a named instance in `config/dashboard.config.json`
-
-Minimal template shape:
-
-```json
-{
-  "template_id": "service-id",
-  "template_version": "1.0",
-  "display_name": "Service Name",
-  "description": "What this integration does",
-  "category": "ops",
-  "icon": "🧩",
-  "config_schema": {},
-  "health_check": {},
-  "metrics": [],
-  "actions": []
-}
-```
-
-Full contract rules are defined in [`templates/_schema.json`](templates/_schema.json).
-
-## Built-In Starter Integrations
-
-- ComfyUI
-- Mailcow
-- OpenClaw Gateway
-- Delivery Hub
-- Voice Pipeline
-
-## CLI: Dashboard Manager
-
-Use the OpenClaw skill CLI helper to manage durable tile instances:
+### Managing Integrations via CLI
+Are you feeling creative? You can use the included OpenClaw CLI skill to manage your dashboard instances dynamically:
 
 ```bash
-python3 skill/dashboard_manager.py list
-python3 skill/dashboard_manager.py add --template comfyui --id comfyui-lab --name "ComfyUI Lab" --set host=localhost --set port=8188
-python3 skill/dashboard_manager.py remove --id comfyui-lab
+# Add a custom ComfyUI node
+python3 skill/dashboard_manager.py add --template comfyui --id comfyui-lab --name "Design Lab" --set host=localhost --set port=8188
+
+# Check connection health across the board
 python3 skill/dashboard_manager.py status
-python3 skill/dashboard_manager.py refresh --sync-missing
 ```
 
-## Repository Layout
+---
 
-- `src/core/` runtime orchestration (config/template/health/layout/tile manager)
-- `src/components/` tile and panel UI renderers
-- `src/utils/` fetch timeout wrapper and jq-lite evaluator
-- `src/styles/` design system and responsive layout styling
-- `templates/` runtime-discovered integration templates
-- `config/` active tile instance config
-- `skill/` OpenClaw skill docs and CLI manager
+## 🔒 Security First
 
-## Security and Ops Notes
+We take your digital ecosystem seriously:
+- **No Secrets in Plaintext**: Never encode API tokens directly in the config. 
+- **Environment Gating**: Limit outbound proxying via the `OPENCLAW_PROXY_ALLOWLIST` in your `.env` file.
+- **LAN-Native**: By default, the architecture relies on edge infrastructure and mocks to ensure robust offline functionality.
 
-- Do not place secrets in template or config JSON files.
-- Restrict proxy target hosts before internet-facing deployment.
-- Default examples use local/mock endpoints for safe bootstrapping.
+---
 
-## Contributing
+## 🤝 Join the Pride
 
-1. Fork and create a feature branch.
-2. Keep templates runtime-driven; avoid hardcoding integration logic in UI code.
-3. Run `npm run build` before opening a PR.
-4. Include template/config examples for new integrations.
+We welcome developers, designers, and tinkerers to help elevate OpenClaw. Check out our `CONTRIBUTING.md` and `SECURITY.md` to get started. Don't forget to run `npm run check` before submitting a Pull Request!
 
 ## License
 
-This repository is licensed under the MIT License. See [`LICENSE`](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
+
+<div align="center">
+  <p>Built with ❤️ by the open-source community.</p>
+</div>

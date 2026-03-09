@@ -13,9 +13,24 @@
 
 ## ✨ Overview
 
-Welcome to the **OpenClaw Dashboard**! This isn't just another static status page. It is a fully scalable, exceptionally designed integration hub built to give you a god's-eye view of your entire OpenClaw AI environment. 
+Welcome to the **OpenClaw Dashboard**.
 
-Whether you're running 3 services or 30, the OpenClaw Dashboard gracefully adapts to your workflow, transforming raw metrics into an intuitive, visually stunning experience utilizing modern glassmorphism and deep dark-mode aesthetics.
+This repo owns the lightweight daily surface for Katherine and quick status checks for Stacy. It is the simple front door, not the deep operator console.
+
+Use the dashboard when you need:
+
+- morning checks
+- one-click links into Mailcow, Delivery Hub, Bigcapital, and Gateway
+- plain-language status summaries
+- a low-cognitive-load workflow
+
+Use the separate `openclaw-operator-ui` project when you need:
+
+- run timelines
+- failure triage
+- service inspection
+- agent inspection
+- background task visibility
 
 ## 🚀 Why You'll Love It
 
@@ -63,6 +78,15 @@ npm run dev
 ```
 Navigate to `http://localhost:5173`. Prepare to be amazed.
 
+### Katherine Mode (Beginner Helper)
+- The top banner now includes a plain-language `Katherine mode` workflow.
+- Quick links:
+  - `Open Store Email` (`mail.theprintery.biz/SOGo/so`)
+  - `Open Katherine Quickstart` (`/katherine-quickstart.html`)
+  - `Open Integration Help` (`/integration-help.html`)
+- This is the correct surface for Katherine. Do not route Katherine into the operator console for normal daily work.
+- Command-style tile actions now copy prepared commands to clipboard when possible.
+
 ### 3. Production Build
 Ready for the big leagues? Compile an ultra-optimized static bundle.
 
@@ -109,6 +133,11 @@ We take your digital ecosystem seriously:
 ## 🤝 Join the Pride
 
 We welcome developers, designers, and tinkerers to help elevate OpenClaw. Check out our `CONTRIBUTING.md` and `SECURITY.md` to get started. Don't forget to run `npm run check` before submitting a Pull Request!
+
+## ⚠️ Current Runtime Mode
+
+By default, starter tiles in `config/dashboard.config.json` point to `/api/mock/*` endpoints served by `vite.config.js`.
+This is intentional for local/demo reliability; move each tile to real endpoints as integrations harden.
 
 ## License
 

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Katherine Quickstart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0b1020;
+        --panel: #101a33;
+        --text: #e7ecff;
+        --sub: #9fb0d8;
+        --line: rgba(148, 163, 184, 0.28);
+      }
+      body {
+        margin: 0;
+        font-family: "Manrope", "Inter", "Noto Sans", "Segoe UI", sans-serif;
+        background: linear-gradient(160deg, #0b1020, #152645);
+        color: var(--text);
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 1.5rem auto;
+        padding: 0 1rem 1.5rem;
+      }
+      .card {
+        background: rgba(16, 26, 51, 0.88);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 1rem 1rem 1.1rem;
+        margin-bottom: 0.9rem;
+      }
+      h1, h2 {
+        margin: 0 0 0.45rem;
+      }
+      h1 { font-size: 1.4rem; }
+      h2 { font-size: 1.05rem; }
+      p, li {
+        color: var(--sub);
+        line-height: 1.45;
+      }
+      ol, ul {
+        margin: 0.4rem 0 0.2rem 1.2rem;
+      }
+      code {
+        background: rgba(15, 23, 42, 0.88);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 0.1rem 0.35rem;
+        color: var(--text);
+      }
+      .ok {
+        color: #86efac;
+      }
+      .warn {
+        color: #fde68a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="card">
+        <h1>Katherine Quickstart</h1>
+        <p>
+          This is the no-tech workflow. You only need these steps.
+        </p>
+        <p>
+          Stay in the Ollie Dashboard for normal work. The operator console is for Stacy when something is broken or needs deeper debugging.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Morning (3 minutes)</h2>
+        <ol>
+          <li>Open the dashboard and click <code>Refresh</code>.</li>
+          <li>Open <code>Delivery Hub</code> and check package totals.</li>
+          <li>Open <code>Mailcow</code> and check urgent email.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h2>What to ask Ollie</h2>
+        <ul>
+          <li><code>We got 145 packages today.</code></li>
+          <li><code>Masy has 75 and Jeremy has 70.</code></li>
+          <li><code>How did we do today?</code></li>
+          <li><code>Draft a Facebook post about [item/sale].</code></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Driver texting status</h2>
+        <p class="warn">
+          Outbound carrier-SMS from your mail server is blocked by carrier filters.
+          Use Google Voice inbound routing for now.
+        </p>
+        <ul>
+          <li>Drivers text: <code>502-230-2820</code></li>
+          <li>Google Voice notices forward to: <code>ollie@theprintery.biz</code></li>
+          <li>Ollie includes these in your daily briefing <span class="ok">(enabled)</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>If something looks wrong</h2>
+        <ul>
+          <li>Say: <code>Read back today's assignments.</code></li>
+          <li>Correct with: <code>Actually Jeremy has 68.</code></li>
+          <li>Ask again: <code>How did we do today?</code></li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

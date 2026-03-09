@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ollie Integration Help Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f3f4f6;
+        --panel: #ffffff;
+        --text: #16325c;
+        --sub: #4b607a;
+        --line: #c8d1dc;
+        --teal: #4ec0bd;
+        --pink: #ebb8cb;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Manrope", "Inter", "Noto Sans", "Segoe UI", sans-serif;
+        color: var(--text);
+        background: linear-gradient(180deg, #f9fafb 0%, #edf1f4 100%);
+      }
+      .wrap {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 1.25rem 1rem 2rem;
+      }
+      .hero {
+        background: linear-gradient(120deg, #ffffff 0%, #eef8f8 60%, #fdeff4 100%);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 1rem 1rem 1.1rem;
+        margin-bottom: 0.9rem;
+      }
+      .hero h1 {
+        margin: 0;
+        font-size: 1.4rem;
+      }
+      .hero p {
+        margin: 0.45rem 0 0;
+        color: var(--sub);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+        gap: 0.9rem;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 0.85rem 0.95rem;
+      }
+      .card h2 {
+        margin: 0 0 0.45rem;
+        font-size: 1.05rem;
+      }
+      .tag {
+        display: inline-block;
+        border: 1px solid var(--teal);
+        border-radius: 999px;
+        padding: 0.08rem 0.45rem;
+        font-size: 0.74rem;
+        margin-bottom: 0.45rem;
+        color: #1e5b5b;
+        background: #ecfafa;
+      }
+      .card p,
+      .card li {
+        color: var(--sub);
+        line-height: 1.35;
+      }
+      ul {
+        margin: 0.3rem 0 0.2rem 1.05rem;
+        padding: 0;
+      }
+      a {
+        color: #0f5b84;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      code {
+        background: #f6f8fa;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 0.08rem 0.3rem;
+        color: var(--text);
+      }
+      .foot {
+        margin-top: 0.9rem;
+        border: 1px solid var(--line);
+        border-left: 5px solid var(--pink);
+        background: #fff;
+        border-radius: 10px;
+        padding: 0.75rem 0.85rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <section class="hero">
+        <h1>Ollie Integration Help Hub</h1>
+        <p>One place for official docs + your local runbooks. Use this order: local SOP first, official docs second.</p>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <span class="tag">Choose Surface</span>
+          <h2>Which UI should I open?</h2>
+          <ul>
+            <li><strong>Katherine daily work:</strong> stay in Ollie Dashboard.</li>
+            <li><strong>Stacy debugging or recovery:</strong> use OpenClaw Operator UI.</li>
+            <li><strong>Developer/reference work:</strong> use the local docs and repos below.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Core</span>
+          <h2>OpenClaw</h2>
+          <ul>
+            <li>Docs: <a href="https://docs.openclaw.ai" target="_blank" rel="noopener noreferrer">docs.openclaw.ai</a></li>
+            <li>Gateway: <code>127.0.0.1:18789</code></li>
+            <li>Local bible: <code>~/.openclaw/PROJECT_BIBLE.md</code></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Katherine</span>
+          <h2>Katherine Daily Docs</h2>
+          <ul>
+            <li>Day 1: <code>~/.openclaw/KATHERINE_DAY1_QUICKSTART.md</code></li>
+            <li>Playbook: <code>~/.openclaw/KATHERINE_NEWBIE_PLAYBOOK.md</code></li>
+            <li>Manual: <code>~/.openclaw/KATHERINE_OPERATOR_MANUAL.md</code></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Operator</span>
+          <h2>Stacy Operator Console</h2>
+          <ul>
+            <li>Repo: <code>~/openclaw-operator-ui/</code></li>
+            <li>Local note: <code>~/.openclaw/STACY_OPERATOR_CONSOLE.md</code></li>
+            <li>Use this for run inspection, service health, and failure triage.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Email</span>
+          <h2>Mailcow + SOGo</h2>
+          <ul>
+            <li>Webmail: <a href="https://mail.theprintery.biz/SOGo/so" target="_blank" rel="noopener noreferrer">mail.theprintery.biz/SOGo/so</a></li>
+            <li>Mailcow docs: <a href="https://docs.mailcow.email" target="_blank" rel="noopener noreferrer">docs.mailcow.email</a></li>
+            <li>SOGo help: <a href="https://www.sogo.nu/support" target="_blank" rel="noopener noreferrer">sogo.nu/support</a></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">SMS Inbound</span>
+          <h2>Google Voice + Gmail Forwarding</h2>
+          <ul>
+            <li>Driver number: <code>502-230-2820</code></li>
+            <li>Voice help: <a href="https://support.google.com/voice" target="_blank" rel="noopener noreferrer">support.google.com/voice</a></li>
+            <li>Gmail forwarding: <a href="https://support.google.com/mail/answer/10957" target="_blank" rel="noopener noreferrer">support.google.com/mail/answer/10957</a></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Operations</span>
+          <h2>Delivery Hub</h2>
+          <ul>
+            <li>Skill path: <code>~/.openclaw/skills/printery-deliveries/</code></li>
+            <li>Data source: SQLite (Delivery Hub skill datastore)</li>
+            <li>Driver reporting SOP: use Katherine manuals above</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Accounting</span>
+          <h2>Bigcapital</h2>
+          <ul>
+            <li>Local URL: <a href="http://localhost:18080" target="_blank" rel="noopener noreferrer">localhost:18080</a></li>
+            <li>Docs: <a href="https://docs.bigcapital.ly" target="_blank" rel="noopener noreferrer">docs.bigcapital.ly</a></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Creative</span>
+          <h2>ComfyUI</h2>
+          <ul>
+            <li>Local URL: <a href="http://localhost:8188" target="_blank" rel="noopener noreferrer">localhost:8188</a></li>
+            <li>Docs: <a href="https://docs.comfy.org" target="_blank" rel="noopener noreferrer">docs.comfy.org</a></li>
+            <li>Qwen TTS node: <a href="https://github.com/flybirdxx/ComfyUI-Qwen-TTS" target="_blank" rel="noopener noreferrer">ComfyUI-Qwen-TTS</a></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Models</span>
+          <h2>LM Studio + LM Link</h2>
+          <ul>
+            <li>LM Studio docs: <a href="https://lmstudio.ai/docs" target="_blank" rel="noopener noreferrer">lmstudio.ai/docs</a></li>
+            <li>LM Link docs: <a href="https://lmstudio.ai/docs/app/lm-link" target="_blank" rel="noopener noreferrer">lmstudio.ai/docs/app/lm-link</a></li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="foot">
+        <strong>Local master index:</strong>
+        <code>~/.openclaw/INTEGRATIONS_HELP_INDEX.md</code>
+      </section>
+    </div>
+  </body>
+</html>
